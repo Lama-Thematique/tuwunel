@@ -23,7 +23,7 @@ use ruma::{
 use tuwunel_core::{
 	Err, Error, Result, debug,
 	debug::INFO_SPAN_LEVEL,
-	debug_warn, err, error,
+	debug_info, debug_warn, err, error,
 	itertools::Itertools,
 	result::LogErr,
 	trace,
@@ -112,7 +112,7 @@ pub(crate) async fn send_transaction_message_route(
 
 	let results = handle(&services, &client, body.origin(), txn_start_time, pdus, edus).await?;
 
-	debug!(
+	debug_info!(
 		pdus = body.pdus.len(),
 		edus = body.edus.len(),
 		elapsed = ?txn_start_time.elapsed(),
